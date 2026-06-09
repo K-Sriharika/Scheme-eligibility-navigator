@@ -18,7 +18,7 @@ AGENT_MODEL = "claude-haiku-4-5-20251001"
 JUDGE_MODEL = "claude-haiku-4-5-20251001"
 
 # Maximum agentic turns per profile. Keeps cost bounded and surfaces efficiency.
-MAX_TURNS = 12
+MAX_TURNS = 20
 
 # JSON schema for the agent's final answer. Enforcing structure makes scoring exact.
 OUTPUT_SCHEMA = {
@@ -52,11 +52,18 @@ You are given a short, plain-language description of a person. Your job is to wo
 out which government schemes they qualify for.
 
 How to work:
-1. Read the person's description and note their relevant attributes.
-2. Use search_schemes to find candidate schemes.
-3. Use get_scheme_details to read the exact eligibility criteria of each candidate.
-4. Decide, scheme by scheme, whether the person meets ALL criteria.
-5. Return only the schemes they qualify for.
+1. Read the person's description and note their relevant attributes (age, gender,
+   occupation, income, category/caste, residence, assets, etc.).
+2. Call search_schemes with an empty keyword to retrieve the full list of available
+   schemes. Do this once — do NOT repeat searches with similar keywords.
+3. From that list, identify every scheme that could plausibly apply. Include
+   universal or broad-eligibility schemes (e.g. financial inclusion, pension) —
+   do not limit yourself only to occupation-specific ones.
+4. Call get_scheme_details for each candidate scheme to read the exact criteria.
+5. Decide, scheme by scheme, whether the person meets ALL criteria.
+6. Return only the schemes they qualify for in the required structured format.
 
-Return your answer in the required structured format.
+Important:
+- One broad search at the start is sufficient; avoid repeated search_schemes calls.
+- Check age-based and income-based schemes even when the profile doesn't mention them.
 """
