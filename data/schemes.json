@@ -1,6 +1,6 @@
 {
-  "_disclaimer": "Eligibility thresholds below are ILLUSTRATIVE and simplified for this demonstration. They are not authoritative benefits advice and must be verified against official sources (myscheme.gov.in and the relevant ministry) before any real use. This dataset exists to demonstrate the agent + eval + optimizer system, not to provide legal eligibility determinations.",
-  "_rulebook_note": "This file is the editable rulebook. A domain expert can add a scheme or change a threshold here and the agent picks it up on the next run, with no code change. See data/rulebook_guide.md.",
+  "_disclaimer": "Eligibility thresholds are illustrative and based on official scheme documentation (2024-2026). Verify against myscheme.gov.in and official portals before real use.",
+  "_rulebook_note": "Domain experts can edit this file; changes take effect on next agent run.",
   "schemes": [
     {
       "id": "pm_kisan",
@@ -8,26 +8,58 @@
       "category": "Agriculture",
       "summary": "Income support for landholding farmer families.",
       "benefit": "Rs 6,000 per year in three instalments.",
-      "documents": ["Aadhaar", "Land records", "Bank account details"],
+      "documents": [
+        "Aadhaar",
+        "Land records",
+        "Bank account details"
+      ],
       "apply_url": "https://pmkisan.gov.in",
       "criteria": [
-        {"field": "occupation", "op": "==", "value": "farmer"},
-        {"field": "has_land", "op": "==", "value": true}
+        {
+          "field": "occupation",
+          "op": "==",
+          "value": "farmer"
+        },
+        {
+          "field": "has_land",
+          "op": "==",
+          "value": true
+        }
       ]
     },
     {
       "id": "pmay_urban",
       "name": "Pradhan Mantri Awas Yojana (Urban)",
       "category": "Housing",
-      "summary": "Credit-linked subsidy and assistance for urban housing for eligible income groups.",
+      "summary": "Credit-linked subsidy for urban housing.",
       "benefit": "Interest subsidy / assistance toward a first pucca house.",
-      "documents": ["Aadhaar", "Income certificate", "Proof that no pucca house is owned"],
+      "documents": [
+        "Aadhaar",
+        "Income certificate",
+        "Proof no pucca house owned"
+      ],
       "apply_url": "https://pmaymis.gov.in",
       "criteria": [
-        {"field": "residence", "op": "==", "value": "urban"},
-        {"field": "age", "op": ">=", "value": 18},
-        {"field": "annual_income", "op": "<=", "value": 1800000},
-        {"field": "owns_pucca_house", "op": "==", "value": false}
+        {
+          "field": "residence",
+          "op": "==",
+          "value": "urban"
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 1800000
+        },
+        {
+          "field": "owns_pucca_house",
+          "op": "==",
+          "value": false
+        }
       ]
     },
     {
@@ -36,12 +68,32 @@
       "category": "Education",
       "summary": "Scholarship for SC/ST students studying post-matriculation.",
       "benefit": "Tuition and maintenance allowance.",
-      "documents": ["Aadhaar", "Caste certificate", "Income certificate", "Admission proof"],
+      "documents": [
+        "Aadhaar",
+        "Caste certificate",
+        "Income certificate",
+        "Admission proof"
+      ],
       "apply_url": "https://scholarships.gov.in",
       "criteria": [
-        {"field": "occupation", "op": "==", "value": "student"},
-        {"field": "category", "op": "in", "value": ["SC", "ST"]},
-        {"field": "annual_income", "op": "<=", "value": 250000}
+        {
+          "field": "occupation",
+          "op": "==",
+          "value": "student"
+        },
+        {
+          "field": "category",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST"
+          ]
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 250000
+        }
       ]
     },
     {
@@ -50,11 +102,23 @@
       "category": "Girl Child / Savings",
       "summary": "Small-savings scheme for a girl child opened by a guardian.",
       "benefit": "High fixed interest savings account with tax benefits.",
-      "documents": ["Girl child's birth certificate", "Guardian ID", "Address proof"],
+      "documents": [
+        "Girl child's birth certificate",
+        "Guardian ID",
+        "Address proof"
+      ],
       "apply_url": "https://www.nsiindia.gov.in",
       "criteria": [
-        {"field": "gender", "op": "==", "value": "female"},
-        {"field": "age", "op": "<=", "value": 10}
+        {
+          "field": "gender",
+          "op": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 10
+        }
       ]
     },
     {
@@ -62,12 +126,28 @@
       "name": "PM Mudra Yojana",
       "category": "Business & Entrepreneurship",
       "summary": "Collateral-free loans for non-corporate, non-farm small/micro enterprises.",
-      "benefit": "Loans up to Rs 10 lakh across Shishu/Kishore/Tarun categories.",
-      "documents": ["Aadhaar", "Business plan / proof", "Bank account details"],
+      "benefit": "Loans up to Rs 10 lakh.",
+      "documents": [
+        "Aadhaar",
+        "Business plan / proof",
+        "Bank account details"
+      ],
       "apply_url": "https://www.mudra.org.in",
       "criteria": [
-        {"field": "occupation", "op": "in", "value": ["entrepreneur", "small_business", "self_employed"]},
-        {"field": "age", "op": ">=", "value": 18}
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "entrepreneur",
+            "small_business",
+            "self_employed"
+          ]
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        }
       ]
     },
     {
@@ -76,11 +156,23 @@
       "category": "Social Welfare",
       "summary": "Monthly pension for senior citizens from below-poverty-line households.",
       "benefit": "Monthly old-age pension.",
-      "documents": ["Aadhaar", "Age proof", "BPL / income certificate"],
+      "documents": [
+        "Aadhaar",
+        "Age proof",
+        "BPL / income certificate"
+      ],
       "apply_url": "https://nsap.nic.in",
       "criteria": [
-        {"field": "age", "op": ">=", "value": 60},
-        {"field": "annual_income", "op": "<=", "value": 100000}
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 60
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 100000
+        }
       ]
     },
     {
@@ -88,16 +180,45 @@
       "name": "Stand-Up India",
       "category": "Business & Entrepreneurship",
       "summary": "Bank loans for greenfield enterprises set up by SC/ST or women entrepreneurs.",
-      "benefit": "Loan between Rs 10 lakh and Rs 1 crore for a new enterprise.",
-      "documents": ["Aadhaar", "Project report", "Caste certificate (if applicable)"],
+      "benefit": "Loan between Rs 10 lakh and Rs 1 crore.",
+      "documents": [
+        "Aadhaar",
+        "Project report",
+        "Caste certificate (if applicable)"
+      ],
       "apply_url": "https://www.standupmitra.in",
       "criteria": [
-        {"field": "occupation", "op": "in", "value": ["entrepreneur", "small_business", "self_employed"]},
-        {"field": "age", "op": ">=", "value": 18},
-        {"any_of": [
-          {"field": "category", "op": "in", "value": ["SC", "ST"]},
-          {"field": "gender", "op": "==", "value": "female"}
-        ]}
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "entrepreneur",
+            "small_business",
+            "self_employed"
+          ]
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "any_of": [
+            {
+              "field": "category",
+              "op": "in",
+              "value": [
+                "SC",
+                "ST"
+              ]
+            },
+            {
+              "field": "gender",
+              "op": "==",
+              "value": "female"
+            }
+          ]
+        }
       ]
     },
     {
@@ -106,36 +227,381 @@
       "category": "Social Welfare",
       "summary": "Working-capital micro-loans for urban street vendors.",
       "benefit": "Collateral-free working capital loan with interest subsidy.",
-      "documents": ["Aadhaar", "Vending certificate / ID", "Bank account details"],
+      "documents": [
+        "Aadhaar",
+        "Vending certificate / ID",
+        "Bank account details"
+      ],
       "apply_url": "https://pmsvanidhi.mohua.gov.in",
       "criteria": [
-        {"field": "occupation", "op": "==", "value": "street_vendor"},
-        {"field": "residence", "op": "==", "value": "urban"}
+        {
+          "field": "occupation",
+          "op": "==",
+          "value": "street_vendor"
+        },
+        {
+          "field": "residence",
+          "op": "==",
+          "value": "urban"
+        }
       ]
     },
     {
       "id": "atal_pension",
       "name": "Atal Pension Yojana",
       "category": "Pension",
-      "summary": "Guaranteed pension scheme aimed at unorganised-sector workers.",
+      "summary": "Guaranteed pension scheme for unorganised-sector workers.",
       "benefit": "Fixed pension from age 60 based on contributions.",
-      "documents": ["Aadhaar", "Bank account details", "Mobile number"],
+      "documents": [
+        "Aadhaar",
+        "Bank account details",
+        "Mobile number"
+      ],
       "apply_url": "https://www.npscra.nsdl.co.in",
       "criteria": [
-        {"field": "age", "op": ">=", "value": 18},
-        {"field": "age", "op": "<=", "value": 40}
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 40
+        }
       ]
     },
     {
       "id": "pmjdy",
       "name": "Pradhan Mantri Jan Dhan Yojana",
       "category": "Financial Inclusion",
-      "summary": "Basic no-frills bank account with accident insurance and overdraft.",
+      "summary": "Basic no-frills bank account with accident insurance.",
       "benefit": "Zero-balance account, RuPay card, accident cover.",
-      "documents": ["Aadhaar or any officially valid document"],
+      "documents": [
+        "Aadhaar or any officially valid document"
+      ],
       "apply_url": "https://pmjdy.gov.in",
       "criteria": [
-        {"field": "age", "op": ">=", "value": 10}
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "pm_surya_ghar",
+      "name": "PM Surya Ghar: Muft Bijli Yojana",
+      "category": "Energy & Sustainability",
+      "summary": "Rooftop solar installation subsidy for households.",
+      "benefit": "Up to Rs 78,000 subsidy + up to 300 units free electricity/month.",
+      "documents": [
+        "Aadhaar",
+        "Residential property proof",
+        "Electricity connection bill"
+      ],
+      "apply_url": "https://pmsuryaghar.gov.in",
+      "criteria": [
+        {
+          "field": "residence",
+          "op": "==",
+          "value": "urban"
+        },
+        {
+          "field": "owns_property",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "has_electricity_connection",
+          "op": "==",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "pm_vidyalaxmi",
+      "name": "PM-Vidyalaxmi Scheme",
+      "category": "Education",
+      "summary": "Collateral-free education loans with interest subvention.",
+      "benefit": "75% credit guarantee, 3% interest subvention, loans up to Rs 10 lakh.",
+      "documents": [
+        "Aadhaar",
+        "Admission proof",
+        "Family income certificate"
+      ],
+      "apply_url": "https://vidyalaxmi.indiastack.org",
+      "criteria": [
+        {
+          "field": "occupation",
+          "op": "==",
+          "value": "student"
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 800000
+        }
+      ]
+    },
+    {
+      "id": "pm_internship_scheme",
+      "name": "Prime Minister's Internship Scheme (PMIS)",
+      "category": "Employment & Skill Development",
+      "summary": "12-month corporate internships in India's top 500 companies.",
+      "benefit": "Rs 5,000/month allowance, Rs 6,000 joining grant, insurance.",
+      "documents": [
+        "Aadhaar",
+        "Educational qualification proof",
+        "Bank account details"
+      ],
+      "apply_url": "https://www.pminternship.gov.in",
+      "criteria": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 25
+        },
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "student",
+            "unemployed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pm_suraj",
+      "name": "PM-SURAJ (Concessional Credit for Marginalized Groups)",
+      "category": "Business & Entrepreneurship",
+      "summary": "Direct concessional credit up to Rs 15 lakh for marginalized entrepreneurs.",
+      "benefit": "Low-interest loans for business startups.",
+      "documents": [
+        "Aadhaar",
+        "Category certificate",
+        "Business plan"
+      ],
+      "apply_url": "https://www.pmsurajauthentication.gov.in",
+      "criteria": [
+        {
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "entrepreneur",
+            "unemployed"
+          ]
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 18
+        },
+        {
+          "field": "category",
+          "op": "in",
+          "value": [
+            "SC",
+            "ST",
+            "OBC"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nps_vatsalya",
+      "name": "NPS Vatsalya Scheme",
+      "category": "Savings & Pension",
+      "summary": "Long-term retirement savings account for minors.",
+      "benefit": "Tax-efficient long-term savings, transitions to NPS at age 18.",
+      "documents": [
+        "Guardian ID",
+        "Minor's birth certificate",
+        "Address proof"
+      ],
+      "apply_url": "https://www.npsindiaonline.com",
+      "criteria": [
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 18
+        }
+      ]
+    },
+    {
+      "id": "pm_e_drive",
+      "name": "PM E-DRIVE Scheme",
+      "category": "Electric Vehicles & Sustainability",
+      "summary": "Subsidy for electric vehicles and charging infrastructure.",
+      "benefit": "Point-of-sale subsidy on e-2W, e-3W, e-buses, e-trucks.",
+      "documents": [
+        "Aadhaar",
+        "Vehicle purchase receipt",
+        "Bank account details"
+      ],
+      "apply_url": "https://heavyindustries.gov.in",
+      "criteria": [
+        {
+          "field": "residence",
+          "op": "==",
+          "value": "urban"
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 5000000
+        }
+      ]
+    },
+    {
+      "id": "maharashtra_majhi_ladki_bahin",
+      "name": "Maharashtra: Majhi Ladki Bahin Yojana",
+      "category": "Women's Welfare",
+      "summary": "Monthly financial assistance for women in Maharashtra.",
+      "benefit": "Rs 1,500/month (Rs 18,000/year) direct benefit transfer.",
+      "documents": [
+        "Aadhaar",
+        "Maharashtra residence proof",
+        "Bank account details"
+      ],
+      "apply_url": "https://majhiladkibahin.maharashtra.gov.in",
+      "criteria": [
+        {
+          "field": "gender",
+          "op": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 21
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 65
+        },
+        {
+          "field": "state",
+          "op": "==",
+          "value": "Maharashtra"
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 250000
+        }
+      ]
+    },
+    {
+      "id": "odisha_subhadra",
+      "name": "Odisha: Subhadra Yojana",
+      "category": "Women's Welfare",
+      "summary": "Women's financial empowerment through Rs 50,000 over 5 years.",
+      "benefit": "Rs 10,000/year in two installments (Raksha Bandhan + Women's Day).",
+      "documents": [
+        "Aadhaar",
+        "Odisha residence proof",
+        "Bank account details"
+      ],
+      "apply_url": "https://subhadrayojana.odisha.gov.in",
+      "criteria": [
+        {
+          "field": "gender",
+          "op": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 21
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 60
+        },
+        {
+          "field": "state",
+          "op": "==",
+          "value": "Odisha"
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 300000
+        }
+      ]
+    },
+    {
+      "id": "chhattisgarh_mahtari_vandana",
+      "name": "Chhattisgarh: Mahtari Vandana Yojana",
+      "category": "Women's Welfare",
+      "summary": "Monthly support for married women in Chhattisgarh.",
+      "benefit": "Rs 1,000/month (Rs 12,000/year) via Direct Benefit Transfer.",
+      "documents": [
+        "Aadhaar",
+        "Marriage certificate",
+        "Bank account details"
+      ],
+      "apply_url": "https://mahtarivandana.cg.gov.in",
+      "criteria": [
+        {
+          "field": "gender",
+          "op": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 21
+        },
+        {
+          "field": "state",
+          "op": "==",
+          "value": "Chhattisgarh"
+        },
+        {
+          "field": "annual_income",
+          "op": "<=",
+          "value": 300000
+        }
+      ]
+    },
+    {
+      "id": "telangana_griha_jyoti",
+      "name": "Telangana: Griha Jyoti Yojana",
+      "category": "Utilities & Energy",
+      "summary": "Free domestic electricity up to 200 units/month.",
+      "benefit": "Zero electricity bill for eligible households.",
+      "documents": [
+        "Aadhaar",
+        "White Ration Card",
+        "Electricity bill"
+      ],
+      "apply_url": "https://www.telangana.gov.in",
+      "criteria": [
+        {
+          "field": "state",
+          "op": "==",
+          "value": "Telangana"
+        },
+        {
+          "field": "has_white_ration_card",
+          "op": "==",
+          "value": true
+        }
       ]
     }
   ]
