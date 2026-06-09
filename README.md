@@ -70,6 +70,10 @@ for a few rounds and prints a before/after table.
 | mean composite | _tbd_ | _tbd_ |
 | hallucinations | _tbd_ | _tbd_ |
 
+## Sample output
+
+![Scheme demo](Scheme%20Demo.png)
+
 ## Run it
 
 ```bash
