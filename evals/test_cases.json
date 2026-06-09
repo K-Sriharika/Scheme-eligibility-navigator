@@ -1,0 +1,88 @@
+{
+  "_note": "Each case has 'profile_text' (given to the agent) and 'attributes' (the canonical structured truth, NOT shown to the agent). Ground-truth eligibility is computed by running rule_engine over 'attributes'. The agent must recover the attributes from the text and apply the rules itself.",
+  "cases": [
+    {
+      "id": "case_01_young_farmer",
+      "profile_text": "I'm Ramesh, 34, a farmer in rural Bihar with two acres of land in my name. My family earns about 1.2 lakh a year.",
+      "attributes": {
+        "age": 34, "gender": "male", "annual_income": 120000,
+        "occupation": "farmer", "category": "OBC", "residence": "rural",
+        "has_land": true, "owns_pucca_house": false
+      }
+    },
+    {
+      "id": "case_02_sc_student",
+      "profile_text": "I am a 19-year-old college student from a Scheduled Caste family. Our annual household income is around 2 lakh rupees.",
+      "attributes": {
+        "age": 19, "gender": "male", "annual_income": 200000,
+        "occupation": "student", "category": "SC", "residence": "urban"
+      }
+    },
+    {
+      "id": "case_03_woman_entrepreneur",
+      "profile_text": "I'm a 28-year-old woman running a small tailoring business in Pune. I earn roughly 3 lakh a year and want to grow it.",
+      "attributes": {
+        "age": 28, "gender": "female", "annual_income": 300000,
+        "occupation": "small_business", "category": "General", "residence": "urban"
+      }
+    },
+    {
+      "id": "case_04_senior_low_income",
+      "profile_text": "My father is 67, retired, lives in our village, and has almost no income now, maybe 50 thousand a year from odd help.",
+      "attributes": {
+        "age": 67, "gender": "male", "annual_income": 50000,
+        "occupation": "retired", "category": "General", "residence": "rural"
+      }
+    },
+    {
+      "id": "case_05_girl_child",
+      "profile_text": "We just had a baby girl, she's 1 year old. We want to start saving for her future.",
+      "attributes": {
+        "age": 1, "gender": "female", "annual_income": 600000,
+        "occupation": "none", "category": "General", "residence": "urban"
+      }
+    },
+    {
+      "id": "case_06_street_vendor",
+      "profile_text": "I sell vegetables from a cart in Delhi. I'm 41 and have been vending for years. Income is irregular, about 1.5 lakh a year.",
+      "attributes": {
+        "age": 41, "gender": "male", "annual_income": 150000,
+        "occupation": "street_vendor", "category": "OBC", "residence": "urban"
+      }
+    },
+    {
+      "id": "case_07_first_home_buyer",
+      "profile_text": "I'm 35, work in IT in Bengaluru, earn 14 lakh a year, and want to buy my first home. I don't own any house yet.",
+      "attributes": {
+        "age": 35, "gender": "female", "annual_income": 1400000,
+        "occupation": "salaried", "category": "General", "residence": "urban",
+        "owns_pucca_house": false
+      }
+    },
+    {
+      "id": "case_08_high_income_no_match",
+      "profile_text": "I'm 45, a senior corporate lawyer in Mumbai earning 60 lakh a year, own two flats. Just curious what I might qualify for.",
+      "attributes": {
+        "age": 45, "gender": "male", "annual_income": 6000000,
+        "occupation": "salaried", "category": "General", "residence": "urban",
+        "owns_pucca_house": true
+      }
+    },
+    {
+      "id": "case_09_young_unorganised_worker",
+      "profile_text": "I'm 30, work as a daily-wage construction worker, no fixed employer. I want some pension security for old age.",
+      "attributes": {
+        "age": 30, "gender": "male", "annual_income": 180000,
+        "occupation": "daily_wage", "category": "OBC", "residence": "urban"
+      }
+    },
+    {
+      "id": "case_10_sc_woman_entrepreneur",
+      "profile_text": "I'm a 32-year-old woman from a Scheduled Tribe community. I run a small handicrafts enterprise and earn about 2.2 lakh a year.",
+      "attributes": {
+        "age": 32, "gender": "female", "annual_income": 220000,
+        "occupation": "entrepreneur", "category": "ST", "residence": "rural"
+      }
+    }
+  ]
+}

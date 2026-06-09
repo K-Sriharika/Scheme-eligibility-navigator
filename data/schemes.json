@@ -1,0 +1,142 @@
+{
+  "_disclaimer": "Eligibility thresholds below are ILLUSTRATIVE and simplified for this demonstration. They are not authoritative benefits advice and must be verified against official sources (myscheme.gov.in and the relevant ministry) before any real use. This dataset exists to demonstrate the agent + eval + optimizer system, not to provide legal eligibility determinations.",
+  "_rulebook_note": "This file is the editable rulebook. A domain expert can add a scheme or change a threshold here and the agent picks it up on the next run, with no code change. See data/rulebook_guide.md.",
+  "schemes": [
+    {
+      "id": "pm_kisan",
+      "name": "PM-KISAN",
+      "category": "Agriculture",
+      "summary": "Income support for landholding farmer families.",
+      "benefit": "Rs 6,000 per year in three instalments.",
+      "documents": ["Aadhaar", "Land records", "Bank account details"],
+      "apply_url": "https://pmkisan.gov.in",
+      "criteria": [
+        {"field": "occupation", "op": "==", "value": "farmer"},
+        {"field": "has_land", "op": "==", "value": true}
+      ]
+    },
+    {
+      "id": "pmay_urban",
+      "name": "Pradhan Mantri Awas Yojana (Urban)",
+      "category": "Housing",
+      "summary": "Credit-linked subsidy and assistance for urban housing for eligible income groups.",
+      "benefit": "Interest subsidy / assistance toward a first pucca house.",
+      "documents": ["Aadhaar", "Income certificate", "Proof that no pucca house is owned"],
+      "apply_url": "https://pmaymis.gov.in",
+      "criteria": [
+        {"field": "residence", "op": "==", "value": "urban"},
+        {"field": "age", "op": ">=", "value": 18},
+        {"field": "annual_income", "op": "<=", "value": 1800000},
+        {"field": "owns_pucca_house", "op": "==", "value": false}
+      ]
+    },
+    {
+      "id": "nsp_post_matric_sc_st",
+      "name": "Post-Matric Scholarship (SC/ST)",
+      "category": "Education",
+      "summary": "Scholarship for SC/ST students studying post-matriculation.",
+      "benefit": "Tuition and maintenance allowance.",
+      "documents": ["Aadhaar", "Caste certificate", "Income certificate", "Admission proof"],
+      "apply_url": "https://scholarships.gov.in",
+      "criteria": [
+        {"field": "occupation", "op": "==", "value": "student"},
+        {"field": "category", "op": "in", "value": ["SC", "ST"]},
+        {"field": "annual_income", "op": "<=", "value": 250000}
+      ]
+    },
+    {
+      "id": "sukanya_samriddhi",
+      "name": "Sukanya Samriddhi Yojana",
+      "category": "Girl Child / Savings",
+      "summary": "Small-savings scheme for a girl child opened by a guardian.",
+      "benefit": "High fixed interest savings account with tax benefits.",
+      "documents": ["Girl child's birth certificate", "Guardian ID", "Address proof"],
+      "apply_url": "https://www.nsiindia.gov.in",
+      "criteria": [
+        {"field": "gender", "op": "==", "value": "female"},
+        {"field": "age", "op": "<=", "value": 10}
+      ]
+    },
+    {
+      "id": "mudra_loan",
+      "name": "PM Mudra Yojana",
+      "category": "Business & Entrepreneurship",
+      "summary": "Collateral-free loans for non-corporate, non-farm small/micro enterprises.",
+      "benefit": "Loans up to Rs 10 lakh across Shishu/Kishore/Tarun categories.",
+      "documents": ["Aadhaar", "Business plan / proof", "Bank account details"],
+      "apply_url": "https://www.mudra.org.in",
+      "criteria": [
+        {"field": "occupation", "op": "in", "value": ["entrepreneur", "small_business", "self_employed"]},
+        {"field": "age", "op": ">=", "value": 18}
+      ]
+    },
+    {
+      "id": "nsap_old_age_pension",
+      "name": "Indira Gandhi National Old Age Pension (NSAP)",
+      "category": "Social Welfare",
+      "summary": "Monthly pension for senior citizens from below-poverty-line households.",
+      "benefit": "Monthly old-age pension.",
+      "documents": ["Aadhaar", "Age proof", "BPL / income certificate"],
+      "apply_url": "https://nsap.nic.in",
+      "criteria": [
+        {"field": "age", "op": ">=", "value": 60},
+        {"field": "annual_income", "op": "<=", "value": 100000}
+      ]
+    },
+    {
+      "id": "standup_india",
+      "name": "Stand-Up India",
+      "category": "Business & Entrepreneurship",
+      "summary": "Bank loans for greenfield enterprises set up by SC/ST or women entrepreneurs.",
+      "benefit": "Loan between Rs 10 lakh and Rs 1 crore for a new enterprise.",
+      "documents": ["Aadhaar", "Project report", "Caste certificate (if applicable)"],
+      "apply_url": "https://www.standupmitra.in",
+      "criteria": [
+        {"field": "occupation", "op": "in", "value": ["entrepreneur", "small_business", "self_employed"]},
+        {"field": "age", "op": ">=", "value": 18},
+        {"any_of": [
+          {"field": "category", "op": "in", "value": ["SC", "ST"]},
+          {"field": "gender", "op": "==", "value": "female"}
+        ]}
+      ]
+    },
+    {
+      "id": "pm_svanidhi",
+      "name": "PM SVANidhi",
+      "category": "Social Welfare",
+      "summary": "Working-capital micro-loans for urban street vendors.",
+      "benefit": "Collateral-free working capital loan with interest subsidy.",
+      "documents": ["Aadhaar", "Vending certificate / ID", "Bank account details"],
+      "apply_url": "https://pmsvanidhi.mohua.gov.in",
+      "criteria": [
+        {"field": "occupation", "op": "==", "value": "street_vendor"},
+        {"field": "residence", "op": "==", "value": "urban"}
+      ]
+    },
+    {
+      "id": "atal_pension",
+      "name": "Atal Pension Yojana",
+      "category": "Pension",
+      "summary": "Guaranteed pension scheme aimed at unorganised-sector workers.",
+      "benefit": "Fixed pension from age 60 based on contributions.",
+      "documents": ["Aadhaar", "Bank account details", "Mobile number"],
+      "apply_url": "https://www.npscra.nsdl.co.in",
+      "criteria": [
+        {"field": "age", "op": ">=", "value": 18},
+        {"field": "age", "op": "<=", "value": 40}
+      ]
+    },
+    {
+      "id": "pmjdy",
+      "name": "Pradhan Mantri Jan Dhan Yojana",
+      "category": "Financial Inclusion",
+      "summary": "Basic no-frills bank account with accident insurance and overdraft.",
+      "benefit": "Zero-balance account, RuPay card, accident cover.",
+      "documents": ["Aadhaar or any officially valid document"],
+      "apply_url": "https://pmjdy.gov.in",
+      "criteria": [
+        {"field": "age", "op": ">=", "value": 10}
+      ]
+    }
+  ]
+}
