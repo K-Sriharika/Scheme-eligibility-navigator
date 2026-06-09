@@ -1,87 +1,363 @@
 {
-  "_note": "Each case has 'profile_text' (given to the agent) and 'attributes' (the canonical structured truth, NOT shown to the agent). Ground-truth eligibility is computed by running rule_engine over 'attributes'. The agent must recover the attributes from the text and apply the rules itself.",
-  "cases": [
+  "_instructions": "Each profile has free-text description + hidden canonical attributes. Ground truth is computed by rule_engine.py against these attributes.",
+  "test_cases": [
     {
       "id": "case_01_young_farmer",
-      "profile_text": "I'm Ramesh, 34, a farmer in rural Bihar with two acres of land in my name. My family earns about 1.2 lakh a year.",
-      "attributes": {
-        "age": 34, "gender": "male", "annual_income": 120000,
-        "occupation": "farmer", "category": "OBC", "residence": "rural",
-        "has_land": true, "owns_pucca_house": false
+      "profile_text": "I'm a 25-year-old farmer in Punjab with 2 acres of land. I grow wheat and rice. My annual income is around \u20b92,00,000. I want to grow my income but don't have capital.",
+      "canonical": {
+        "age": 25,
+        "gender": "male",
+        "occupation": "farmer",
+        "has_land": true,
+        "annual_income": 200000,
+        "state": "Punjab",
+        "residence": "rural",
+        "category": null
       }
     },
     {
       "id": "case_02_sc_student",
-      "profile_text": "I am a 19-year-old college student from a Scheduled Caste family. Our annual household income is around 2 lakh rupees.",
-      "attributes": {
-        "age": 19, "gender": "male", "annual_income": 200000,
-        "occupation": "student", "category": "SC", "residence": "urban"
+      "profile_text": "I'm a 19-year-old SC student from Tamil Nadu, currently pursuing my Bachelor's degree. My family's annual income is \u20b92,00,000. I'm looking for educational support.",
+      "canonical": {
+        "age": 19,
+        "gender": "male",
+        "occupation": "student",
+        "category": "SC",
+        "annual_income": 200000,
+        "state": "Tamil Nadu",
+        "residence": "urban",
+        "has_land": false
       }
     },
     {
       "id": "case_03_woman_entrepreneur",
-      "profile_text": "I'm a 28-year-old woman running a small tailoring business in Pune. I earn roughly 3 lakh a year and want to grow it.",
-      "attributes": {
-        "age": 28, "gender": "female", "annual_income": 300000,
-        "occupation": "small_business", "category": "General", "residence": "urban"
+      "profile_text": "I'm a 32-year-old woman from Delhi running a small tailoring business. My business income is \u20b91,80,000 per year. I want to expand but need capital.",
+      "canonical": {
+        "age": 32,
+        "gender": "female",
+        "occupation": "entrepreneur",
+        "annual_income": 180000,
+        "state": "Delhi",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
       }
     },
     {
       "id": "case_04_senior_low_income",
-      "profile_text": "My father is 67, retired, lives in our village, and has almost no income now, maybe 50 thousand a year from odd help.",
-      "attributes": {
-        "age": 67, "gender": "male", "annual_income": 50000,
-        "occupation": "retired", "category": "General", "residence": "rural"
+      "profile_text": "I'm a 68-year-old widow living in Uttar Pradesh. My late husband was a farmer. I have no income now and live with my son. My family's annual income is \u20b980,000.",
+      "canonical": {
+        "age": 68,
+        "gender": "female",
+        "occupation": "unemployed",
+        "annual_income": 80000,
+        "state": "Uttar Pradesh",
+        "residence": "rural",
+        "category": null,
+        "has_land": false
       }
     },
     {
       "id": "case_05_girl_child",
-      "profile_text": "We just had a baby girl, she's 1 year old. We want to start saving for her future.",
-      "attributes": {
-        "age": 1, "gender": "female", "annual_income": 600000,
-        "occupation": "none", "category": "General", "residence": "urban"
+      "profile_text": "I'm a parent of a 5-year-old girl. I want to secure her future through long-term savings. Our family income is \u20b94,00,000 per year.",
+      "canonical": {
+        "age": 5,
+        "gender": "female",
+        "occupation": "student",
+        "annual_income": 400000,
+        "state": "Maharastra",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
       }
     },
     {
       "id": "case_06_street_vendor",
-      "profile_text": "I sell vegetables from a cart in Delhi. I'm 41 and have been vending for years. Income is irregular, about 1.5 lakh a year.",
-      "attributes": {
-        "age": 41, "gender": "male", "annual_income": 150000,
-        "occupation": "street_vendor", "category": "OBC", "residence": "urban"
+      "profile_text": "I'm a 45-year-old street vendor selling snacks on the footpath near Bangalore railway station. My annual income is around \u20b91,50,000. I need working capital.",
+      "canonical": {
+        "age": 45,
+        "gender": "male",
+        "occupation": "street_vendor",
+        "annual_income": 150000,
+        "state": "Karnataka",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
       }
     },
     {
       "id": "case_07_first_home_buyer",
-      "profile_text": "I'm 35, work in IT in Bengaluru, earn 14 lakh a year, and want to buy my first home. I don't own any house yet.",
-      "attributes": {
-        "age": 35, "gender": "female", "annual_income": 1400000,
-        "occupation": "salaried", "category": "General", "residence": "urban",
-        "owns_pucca_house": false
+      "profile_text": "I'm a 28-year-old IT professional in Pune with an annual salary of \u20b96,00,000. I want to buy my first home. I currently rent an apartment.",
+      "canonical": {
+        "age": 28,
+        "gender": "male",
+        "occupation": "self_employed",
+        "annual_income": 600000,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "owns_pucca_house": false,
+        "has_land": false
       }
     },
     {
       "id": "case_08_high_income_no_match",
-      "profile_text": "I'm 45, a senior corporate lawyer in Mumbai earning 60 lakh a year, own two flats. Just curious what I might qualify for.",
-      "attributes": {
-        "age": 45, "gender": "male", "annual_income": 6000000,
-        "occupation": "salaried", "category": "General", "residence": "urban",
-        "owns_pucca_house": true
+      "profile_text": "I'm a 55-year-old doctor earning \u20b915,00,000 per year in Mumbai. I own my home and car. I pay income tax. I'm looking for investment opportunities.",
+      "canonical": {
+        "age": 55,
+        "gender": "male",
+        "occupation": "professional",
+        "annual_income": 1500000,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "owns_pucca_house": true,
+        "income_tax_payer": true
       }
     },
     {
       "id": "case_09_young_unorganised_worker",
-      "profile_text": "I'm 30, work as a daily-wage construction worker, no fixed employer. I want some pension security for old age.",
-      "attributes": {
-        "age": 30, "gender": "male", "annual_income": 180000,
-        "occupation": "daily_wage", "category": "OBC", "residence": "urban"
+      "profile_text": "I'm a 22-year-old daily wage worker in Mumbai helping my father in his small mechanical workshop. I earn around \u20b91,20,000 per year. I want a secure retirement plan.",
+      "canonical": {
+        "age": 22,
+        "gender": "male",
+        "occupation": "self_employed",
+        "annual_income": 120000,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
       }
     },
     {
       "id": "case_10_sc_woman_entrepreneur",
-      "profile_text": "I'm a 32-year-old woman from a Scheduled Tribe community. I run a small handicrafts enterprise and earn about 2.2 lakh a year.",
-      "attributes": {
-        "age": 32, "gender": "female", "annual_income": 220000,
-        "occupation": "entrepreneur", "category": "ST", "residence": "rural"
+      "profile_text": "I'm a 36-year-old SC woman running a small food processing business in Madhya Pradesh. My business income is \u20b92,20,000 per year. I want to scale up.",
+      "canonical": {
+        "age": 36,
+        "gender": "female",
+        "occupation": "entrepreneur",
+        "annual_income": 220000,
+        "state": "Madhya Pradesh",
+        "residence": "urban",
+        "category": "SC",
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_11_solar_homeowner",
+      "profile_text": "I'm a 52-year-old homeowner in Bangalore with a suitable rooftop. I have an active electricity connection and currently pay \u20b94,000/month. No other solar subsidy availed.",
+      "canonical": {
+        "age": 52,
+        "gender": "male",
+        "occupation": "professional",
+        "annual_income": 800000,
+        "state": "Karnataka",
+        "residence": "urban",
+        "owns_property": true,
+        "has_electricity_connection": true,
+        "category": null
+      }
+    },
+    {
+      "id": "case_12_college_girl_from_poor_family",
+      "profile_text": "I'm a 20-year-old girl from a poor family in Bihar, currently studying B.Com at a state university. My family's annual income is \u20b93,50,000. I need help with tuition.",
+      "canonical": {
+        "age": 20,
+        "gender": "female",
+        "occupation": "student",
+        "annual_income": 350000,
+        "state": "Bihar",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_13_young_degree_holder_seeking_internship",
+      "profile_text": "I'm a 24-year-old B.Tech graduate from a state engineering college. I'm currently unemployed and seeking an internship opportunity. I'm not eligible for IIT/premium school exclusions.",
+      "canonical": {
+        "age": 24,
+        "gender": "male",
+        "occupation": "unemployed",
+        "annual_income": 0,
+        "state": "Delhi",
+        "residence": "urban",
+        "category": null,
+        "education_level": "B.Tech"
+      }
+    },
+    {
+      "id": "case_14_obc_business_startup_founder",
+      "profile_text": "I'm a 28-year-old OBC individual from Rajasthan wanting to start a bakery business. I have a solid business plan but no prior business experience. Annual family income is \u20b94,50,000.",
+      "canonical": {
+        "age": 28,
+        "gender": "male",
+        "occupation": "unemployed",
+        "annual_income": 450000,
+        "state": "Rajasthan",
+        "residence": "urban",
+        "category": "OBC",
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_15_minor_savings_account_parent",
+      "profile_text": "I'm a 35-year-old parent of a 7-year-old son. I want to start long-term retirement savings for him via NPS. My family income is \u20b97,50,000 per year.",
+      "canonical": {
+        "age": 7,
+        "gender": "male",
+        "occupation": "student",
+        "annual_income": 750000,
+        "state": "Tamil Nadu",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_16_ev_buyer_middle_class",
+      "profile_text": "I'm a 40-year-old salaried employee in Pune. I earn \u20b99,00,000 per year. I want to buy an electric two-wheeler for commuting. Annual family income qualifies for subsidy.",
+      "canonical": {
+        "age": 40,
+        "gender": "male",
+        "occupation": "professional",
+        "annual_income": 900000,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_17_maharashtra_married_woman_low_income",
+      "profile_text": "I'm a 35-year-old married woman from Mumbai, Maharashtra. My husband's income is \u20b91,80,000 per year. My family doesn't have income tax payers or govt employees. I'm looking for financial support.",
+      "canonical": {
+        "age": 35,
+        "gender": "female",
+        "occupation": "homemaker",
+        "annual_income": 180000,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "marital_status": "married",
+        "income_tax_payer": false
+      }
+    },
+    {
+      "id": "case_18_odisha_girl_child_20_years",
+      "profile_text": "I'm a 20-year-old girl from Bhubaneswar, Odisha, from an economically weaker background. My family's annual income is \u20b92,20,000. I want to know about women empowerment schemes.",
+      "canonical": {
+        "age": 20,
+        "gender": "female",
+        "occupation": "student",
+        "annual_income": 220000,
+        "state": "Odisha",
+        "residence": "urban",
+        "category": null,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_19_chhattisgarh_widow_45_years",
+      "profile_text": "I'm a 45-year-old widow from Raipur, Chhattisgarh. My late husband was a farmer. My family's income is \u20b92,50,000 per year. No family member pays income tax or works in government.",
+      "canonical": {
+        "age": 45,
+        "gender": "female",
+        "occupation": "unemployed",
+        "annual_income": 250000,
+        "state": "Chhattisgarh",
+        "residence": "urban",
+        "category": null,
+        "marital_status": "widow",
+        "income_tax_payer": false,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_20_telangana_white_ration_card_holder",
+      "profile_text": "I'm a 50-year-old household head in Hyderabad, Telangana. My family holds a White Ration Card (Food Security Card). Our monthly electricity consumption is about 150 units.",
+      "canonical": {
+        "age": 50,
+        "gender": "male",
+        "occupation": "self_employed",
+        "annual_income": 150000,
+        "state": "Telangana",
+        "residence": "urban",
+        "has_white_ration_card": true,
+        "monthly_electricity_units": 150,
+        "category": null
+      }
+    },
+    {
+      "id": "case_21_st_farmer_with_land",
+      "profile_text": "I'm a 40-year-old ST farmer from Jharkhand with 3 acres of agricultural land. My annual farming income is \u20b92,50,000. I want to diversify my income.",
+      "canonical": {
+        "age": 40,
+        "gender": "male",
+        "occupation": "farmer",
+        "annual_income": 250000,
+        "state": "Jharkhand",
+        "residence": "rural",
+        "category": "ST",
+        "has_land": true
+      }
+    },
+    {
+      "id": "case_22_young_woman_iti_graduate",
+      "profile_text": "I'm a 23-year-old woman from Mumbai who completed ITI in electrical trade. I'm currently unemployed. I want to start my own small electrical repairs business.",
+      "canonical": {
+        "age": 23,
+        "gender": "female",
+        "occupation": "unemployed",
+        "annual_income": 0,
+        "state": "Maharashtra",
+        "residence": "urban",
+        "category": null,
+        "education_level": "ITI",
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_23_rural_unorganised_worker_pension",
+      "profile_text": "I'm a 32-year-old construction worker from a village in Uttar Pradesh. My annual income is \u20b91,80,000. I have no formal pension coverage and want retirement security.",
+      "canonical": {
+        "age": 32,
+        "gender": "male",
+        "occupation": "self_employed",
+        "annual_income": 180000,
+        "state": "Uttar Pradesh",
+        "residence": "rural",
+        "category": null,
+        "has_land": false
+      }
+    },
+    {
+      "id": "case_24_first_account_opening_opportunity",
+      "profile_text": "I'm a 16-year-old boy from a village in Assam. I don't have any bank account yet. My family has very limited income (\u20b960,000/year). I want a safe place to save.",
+      "canonical": {
+        "age": 16,
+        "gender": "male",
+        "occupation": "student",
+        "annual_income": 60000,
+        "state": "Assam",
+        "residence": "rural",
+        "category": null,
+        "has_bank_account": false
+      }
+    },
+    {
+      "id": "case_25_multi_scheme_eligible_woman_entrepreneur",
+      "profile_text": "I'm a 31-year-old SC woman from Gujarat running a jewelry business from my home. My annual business income is \u20b93,50,000. I'm married and looking to expand.",
+      "canonical": {
+        "age": 31,
+        "gender": "female",
+        "occupation": "entrepreneur",
+        "annual_income": 350000,
+        "state": "Gujarat",
+        "residence": "urban",
+        "category": "SC",
+        "marital_status": "married",
+        "has_land": false
       }
     }
   ]
