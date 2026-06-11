@@ -1,74 +1,88 @@
+#!/usr/bin/env python3
 """
-run_eval.py
-
-Runs the agent over every test case, computes the ground truth with the rule
-engine, scores each run, and prints a scorecard.
-
-Usage:
-    python -m evals.run_eval
-    python -m evals.run_eval --limit 3        # quick smoke test on 3 cases
-
-Returns (when imported) the list of CaseScore plus the aggregate dict, so the
-optimizer can reuse it.
+Evaluation harness for Scheme Eligibility Navigator agent.
 """
 
-from __future__ import annotations
-import argparse
 import asyncio
 import json
-import pathlib
-from typing import Any
+import sys
+from pathlib import Path
 
 from agent.agent import run_agent
-from agent.tools import load_schemes
 from agent.rule_engine import eligible_scheme_ids
-from evals.scorer import score_case, aggregate, CaseScore
-
-_CASES_PATH = pathlib.Path(__file__).parent / "test_cases.json"
+from evals.scorer import CaseScore, aggregate, score_case
 
 
-def load_cases() -> list[dict[str, Any]]:
-    return json.loads(_CASES_PATH.read_text())["cases"]
+def _load_data() -> tuple[list[dict], list[dict], set[str]]:
+    test_cases_path = Path("evals/test_cases.json")
+    schemes_path = Path("data/schemes.json")
 
+    if not test_cases_path.exists():
+        print(f"Error: {test_cases_path} not found")
+        sys.exit(1)
+    if not schemes_path.exists():
+        print(f"Error: {schemes_path} not found")
+        sys.exit(1)
 
-async def evaluate(system_prompt: str | None = None, limit: int | None = None) -> tuple[list[CaseScore], dict[str, Any]]:
-    schemes = load_schemes()
+    with open(test_cases_path) as f:
+        test_data = json.load(f)
+    with open(schemes_path) as f:
+        schemes_data = json.load(f)
+
+    schemes = schemes_data["schemes"]
     valid_ids = {s["id"] for s in schemes}
-    cases = load_cases()
-    if limit:
-        cases = cases[:limit]
+    return test_data["test_cases"], schemes, valid_ids
+
+
+async def evaluate(
+    system_prompt: str | None = None,
+    limit: int | None = None,
+) -> tuple[list[CaseScore], dict]:
+    test_cases, schemes, valid_ids = _load_data()
+    cases_to_run = test_cases[:limit] if limit else test_cases
 
     scores: list[CaseScore] = []
-    for case in cases:
-        expected = eligible_scheme_ids(case["attributes"], schemes)
-        run = await run_agent(case["profile_text"], system_prompt=system_prompt)
-        scores.append(score_case(case["id"], expected, run, valid_ids))
+    for case in cases_to_run:
+        case_id = case["id"]
+        profile_text = case["profile_text"]
+        canonical = case["canonical"]
 
-    return scores, aggregate(scores)
+        ground_truth = eligible_scheme_ids(canonical, schemes)
+        run = await run_agent(profile_text, system_prompt=system_prompt)
+        s = score_case(case_id, ground_truth, run, valid_ids)
+        scores.append(s)
+
+    agg = aggregate(scores)
+    return scores, agg
 
 
-def print_scorecard(scores: list[CaseScore], agg: dict[str, Any]) -> None:
-    print("\n" + "=" * 78)
-    print(f"{'case':<28}{'F1':>6}{'prec':>7}{'rec':>7}{'halluc':>8}{'tools':>7}{'$':>9}")
-    print("-" * 78)
+def print_scorecard(scores: list[CaseScore], agg: dict) -> None:
     for s in scores:
-        flag = "  ERR" if s.error else ""
-        print(f"{s.case_id:<28}{s.f1:>6}{s.precision:>7}{s.recall:>7}"
-              f"{s.hallucination_count:>8}{s.tool_calls:>7}{s.cost_usd:>9}{flag}")
-    print("-" * 78)
-    print(f"mean F1 {agg['mean_f1']}   mean composite {agg['mean_composite']}   "
-          f"hallucinations {agg['total_hallucinations']}   "
-          f"tool calls {agg['total_tool_calls']}   cost ${agg['total_cost_usd']}")
-    print("=" * 78 + "\n")
+        status = f"ERR({s.error})" if s.error else f"F1={s.f1:.3f}"
+        print(
+            f"  {s.case_id}: {status}  precision={s.precision:.3f}"
+            f"  recall={s.recall:.3f}  halluc={s.hallucination_count}"
+            f"  composite={s.composite:.3f}"
+        )
+    print(
+        f"\nMean F1: {agg['mean_f1']:.3f}  |  Mean composite: {agg['mean_composite']:.3f}"
+        f"  |  Hallucinations: {agg['total_hallucinations']}  |  Errors: {agg['n_errors']}"
+    )
 
 
-async def _main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--limit", type=int, default=None)
-    args = ap.parse_args()
-    scores, agg = await evaluate(limit=args.limit)
+async def _main_async() -> None:
+    limit = None
+    if len(sys.argv) > 1 and sys.argv[1] == "--limit":
+        limit = int(sys.argv[2])
+
+    print(f"Running eval on {'all' if not limit else limit} test cases...\n")
+    scores, agg = await evaluate(limit=limit)
     print_scorecard(scores, agg)
 
 
+def main() -> None:
+    asyncio.run(_main_async())
+
+
 if __name__ == "__main__":
-    asyncio.run(_main())
+    main()

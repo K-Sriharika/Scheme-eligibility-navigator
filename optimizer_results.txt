@@ -1,0 +1,97 @@
+
+### Baseline ###
+  case_01_young_farmer: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_02_sc_student: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_03_woman_entrepreneur: F1=0.889  precision=1.000  recall=0.800  halluc=0  composite=0.889
+  case_04_senior_low_income: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_05_girl_child: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_06_street_vendor: F1=0.667  precision=0.667  recall=0.667  halluc=0  composite=0.667
+  case_07_first_home_buyer: F1=0.889  precision=1.000  recall=0.800  halluc=0  composite=0.889
+  case_08_high_income_no_match: F1=0.000  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_09_young_unorganised_worker: F1=0.857  precision=1.000  recall=0.750  halluc=0  composite=0.857
+  case_10_sc_woman_entrepreneur: F1=0.909  precision=1.000  recall=0.833  halluc=0  composite=0.909
+  case_11_solar_homeowner: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_12_college_girl_from_poor_family: F1=0.889  precision=1.000  recall=0.800  halluc=0  composite=0.889
+  case_13_young_degree_holder_seeking_internship: F1=0.857  precision=1.000  recall=0.750  halluc=0  composite=0.857
+  case_14_obc_business_startup_founder: F1=0.750  precision=0.750  recall=0.750  halluc=0  composite=0.750
+  case_15_minor_savings_account_parent: F1=0.400  precision=0.333  recall=0.500  halluc=0  composite=0.400
+  case_16_ev_buyer_middle_class: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_17_maharashtra_married_woman_low_income: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_18_odisha_girl_child_20_years: F1=0.500  precision=0.667  recall=0.400  halluc=0  composite=0.500
+  case_19_chhattisgarh_widow_45_years: F1=0.500  precision=1.000  recall=0.333  halluc=0  composite=0.500
+  case_20_telangana_white_ration_card_holder: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_21_st_farmer_with_land: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_22_young_woman_iti_graduate: F1=0.600  precision=0.600  recall=0.600  halluc=0  composite=0.600
+  case_23_rural_unorganised_worker_pension: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_24_first_account_opening_opportunity: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_25_multi_scheme_eligible_woman_entrepreneur: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+
+Mean F1: 0.754  |  Mean composite: 0.754  |  Hallucinations: 0  |  Errors: 0
+
+### Optimization round 1: proposing a new prompt ###
+  case_01_young_farmer: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_02_sc_student: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_03_woman_entrepreneur: F1=0.750  precision=1.000  recall=0.600  halluc=0  composite=0.750
+  case_04_senior_low_income: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_05_girl_child: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_06_street_vendor: F1=0.667  precision=0.667  recall=0.667  halluc=0  composite=0.667
+  case_07_first_home_buyer: F1=0.333  precision=1.000  recall=0.200  halluc=0  composite=0.333
+  case_08_high_income_no_match: F1=0.500  precision=0.500  recall=0.500  halluc=0  composite=0.500
+  case_09_young_unorganised_worker: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_10_sc_woman_entrepreneur: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_11_solar_homeowner: F1=0.500  precision=1.000  recall=0.333  halluc=0  composite=0.500
+  case_12_college_girl_from_poor_family: F1=0.571  precision=1.000  recall=0.400  halluc=0  composite=0.571
+  case_13_young_degree_holder_seeking_internship: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_14_obc_business_startup_founder: F1=0.333  precision=0.500  recall=0.250  halluc=0  composite=0.333
+  case_15_minor_savings_account_parent: F1=0.500  precision=0.500  recall=0.500  halluc=0  composite=0.500
+  case_16_ev_buyer_middle_class: F1=0.500  precision=1.000  recall=0.333  halluc=0  composite=0.500
+  case_17_maharashtra_married_woman_low_income: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_18_odisha_girl_child_20_years: F1=0.571  precision=1.000  recall=0.400  halluc=0  composite=0.571
+  case_19_chhattisgarh_widow_45_years: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_20_telangana_white_ration_card_holder: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_21_st_farmer_with_land: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_22_young_woman_iti_graduate: F1=0.600  precision=0.600  recall=0.600  halluc=0  composite=0.600
+  case_23_rural_unorganised_worker_pension: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_24_first_account_opening_opportunity: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_25_multi_scheme_eligible_woman_entrepreneur: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+
+Mean F1: 0.686  |  Mean composite: 0.686  |  Hallucinations: 0  |  Errors: 0
+round 1: no improvement (0.686 <= 0.754), discarding.
+
+### Optimization round 2: proposing a new prompt ###
+  case_01_young_farmer: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_02_sc_student: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_03_woman_entrepreneur: F1=0.333  precision=1.000  recall=0.200  halluc=0  composite=0.333
+  case_04_senior_low_income: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_05_girl_child: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_06_street_vendor: F1=0.400  precision=0.500  recall=0.333  halluc=0  composite=0.400
+  case_07_first_home_buyer: F1=0.750  precision=1.000  recall=0.600  halluc=0  composite=0.750
+  case_08_high_income_no_match: F1=0.500  precision=0.500  recall=0.500  halluc=0  composite=0.500
+  case_09_young_unorganised_worker: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_10_sc_woman_entrepreneur: F1=0.909  precision=1.000  recall=0.833  halluc=0  composite=0.909
+  case_11_solar_homeowner: F1=0.500  precision=1.000  recall=0.333  halluc=0  composite=0.500
+  case_12_college_girl_from_poor_family: F1=0.750  precision=1.000  recall=0.600  halluc=0  composite=0.750
+  case_13_young_degree_holder_seeking_internship: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_14_obc_business_startup_founder: F1=0.571  precision=0.667  recall=0.500  halluc=0  composite=0.571
+  case_15_minor_savings_account_parent: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_16_ev_buyer_middle_class: F1=0.500  precision=1.000  recall=0.333  halluc=0  composite=0.500
+  case_17_maharashtra_married_woman_low_income: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_18_odisha_girl_child_20_years: F1=0.333  precision=1.000  recall=0.200  halluc=0  composite=0.333
+  case_19_chhattisgarh_widow_45_years: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_20_telangana_white_ration_card_holder: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_21_st_farmer_with_land: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_22_young_woman_iti_graduate: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_23_rural_unorganised_worker_pension: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_24_first_account_opening_opportunity: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+  case_25_multi_scheme_eligible_woman_entrepreneur: ERR(Exception: Claude Code returned an error result: success)  precision=0.000  recall=0.000  halluc=0  composite=0.000
+
+Mean F1: 0.473  |  Mean composite: 0.473  |  Hallucinations: 0  |  Errors: 7
+round 2: no improvement (0.473 <= 0.754), discarding.
+
+##################################################
+BEFORE -> AFTER
+  mean F1:        0.754  ->  0.754
+  mean composite: 0.754  ->  0.754
+##################################################
+
+Saved full result to /private/tmp/test-clone/optimizer/result.json

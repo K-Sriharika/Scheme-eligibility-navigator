@@ -1,0 +1,29 @@
+Running eval on all test cases...
+
+  case_01_young_farmer: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_02_sc_student: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_03_woman_entrepreneur: F1=0.750  precision=1.000  recall=0.600  halluc=0  composite=0.750
+  case_04_senior_low_income: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_05_girl_child: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_06_street_vendor: F1=0.667  precision=0.667  recall=0.667  halluc=0  composite=0.667
+  case_07_first_home_buyer: F1=0.571  precision=1.000  recall=0.400  halluc=0  composite=0.571
+  case_08_high_income_no_match: F1=0.800  precision=0.667  recall=1.000  halluc=0  composite=0.800
+  case_09_young_unorganised_worker: F1=0.750  precision=0.750  recall=0.750  halluc=0  composite=0.750
+  case_10_sc_woman_entrepreneur: F1=0.909  precision=1.000  recall=0.833  halluc=0  composite=0.909
+  case_11_solar_homeowner: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_12_college_girl_from_poor_family: F1=0.750  precision=1.000  recall=0.600  halluc=0  composite=0.750
+  case_13_young_degree_holder_seeking_internship: F1=0.857  precision=1.000  recall=0.750  halluc=0  composite=0.857
+  case_14_obc_business_startup_founder: F1=0.750  precision=0.750  recall=0.750  halluc=0  composite=0.750
+  case_15_minor_savings_account_parent: F1=0.500  precision=0.500  recall=0.500  halluc=0  composite=0.500
+  case_16_ev_buyer_middle_class: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_17_maharashtra_married_woman_low_income: F1=0.750  precision=0.750  recall=0.750  halluc=0  composite=0.750
+  case_18_odisha_girl_child_20_years: F1=0.500  precision=0.667  recall=0.400  halluc=0  composite=0.500
+  case_19_chhattisgarh_widow_45_years: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_20_telangana_white_ration_card_holder: F1=0.667  precision=1.000  recall=0.500  halluc=0  composite=0.667
+  case_21_st_farmer_with_land: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_22_young_woman_iti_graduate: F1=0.571  precision=1.000  recall=0.400  halluc=0  composite=0.571
+  case_23_rural_unorganised_worker_pension: F1=0.800  precision=1.000  recall=0.667  halluc=0  composite=0.800
+  case_24_first_account_opening_opportunity: F1=1.000  precision=1.000  recall=1.000  halluc=0  composite=1.000
+  case_25_multi_scheme_eligible_woman_entrepreneur: F1=0.800  precision=1.000  recall=0.667  halluc=1  composite=0.300
+
+Mean F1: 0.784  |  Mean composite: 0.764  |  Hallucinations: 1  |  Errors: 0

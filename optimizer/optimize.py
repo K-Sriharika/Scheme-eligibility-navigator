@@ -25,13 +25,12 @@ import asyncio
 import json
 import pathlib
 
-from anthropic import AsyncAnthropic
+from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ResultMessage, TextBlock, query
 
 from agent import config
 from evals.run_eval import evaluate, print_scorecard
 
 _RESULT_PATH = pathlib.Path(__file__).parent / "result.json"
-_client = AsyncAnthropic()
 
 
 def _failure_digest(scores) -> str:
@@ -68,12 +67,20 @@ Rewrite the system prompt so the agent makes fewer of these mistakes. Keep it cl
 and concise. Do not invent new tools. Output ONLY the new system prompt text, with
 no preamble, no backticks, no commentary.
 """
-    resp = await _client.messages.create(
+    options = ClaudeAgentOptions(
         model=config.JUDGE_MODEL,
-        max_tokens=800,
-        messages=[{"role": "user", "content": instruction}],
+        max_turns=1,
     )
-    return "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
+    result_text = ""
+    async for message in query(prompt=instruction, options=options):
+        if isinstance(message, AssistantMessage):
+            for block in message.content:
+                if isinstance(block, TextBlock):
+                    result_text = block.text
+        elif isinstance(message, ResultMessage):
+            if message.result and not result_text:
+                result_text = message.result
+    return result_text.strip()
 
 
 async def optimize(rounds: int = 2) -> dict:
